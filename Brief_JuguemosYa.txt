@@ -1,0 +1,10 @@
+JuguemosYa! pretende ser una app que permita la organización y gestión de encuentros deportivos.
+Es requisito que por cada grupo de deportistas haya un jugador-organizador, el cual va a poder establecer y 
+modificar los parametros del encuentro (por ej: fecha, horario, lugar de encuentro, cantidad de jugadores,
+etc.), gestión de jugadores dentro del grupo y en caso de decidirlo, designar a otro jugador-organizador al grupo.
+Cada grupo estara identificado por un nombre, el cual estara asociado a las cuentas de los jugadores,
+entre ellos el jugador-organizador.
+El jugador-organizador puede realizar invitaciones por medio de los nombres de usuario a otros jugadores que no
+se encuentro dentro del grupo.
+Los jugadores pueden aceptar invitaciones y confirmar asistencia a los partidos disponibles creados por el 
+jugador-organizador y dejar el grupo.
