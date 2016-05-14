@@ -1,5 +1,5 @@
 JuguemosYa! pretende ser una app movil del entorno Android que permita la organización y gestión de encuentros deportivos.
-Se trata de una gestion de encuentros a través de grupos conformado por usuarios registrados.
+Se trata de una gestión a través de grupos conformado por usuarios registrados.
 Es requisito que por cada grupo de deportistas haya un jugador-organizador, el cual tendrá el poder de establecer y 
 modificar los parametros del encuentro (por ejemplo: fecha, horario, lugar de encuentro, cantidad de jugadores,
 etc.), gestión de jugadores dentro del grupo y en caso de decidirlo, designar a otro jugador-organizador al grupo.
