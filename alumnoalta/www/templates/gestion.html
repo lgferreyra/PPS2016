@@ -1,0 +1,9 @@
+<ion-view view-title="ABM Alumnos">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="operacion in operaciones" href="#/app/gestion/{{operacion.url}}">
+        {{operacion.title}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

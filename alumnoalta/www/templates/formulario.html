@@ -1,0 +1,35 @@
+<ion-view view-title="{{titulo}}">
+  <ion-content>
+    <form ng-submit="enviarDatos()">
+      <label class="item item-input">
+        <span class="input-label">Apellido</span>
+        <input type="text" ng-model="alumno.apellido">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Nombre</span>
+        <input type="text" ng-model="alumno.nombre">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Número de documento</span>
+        <input type="number" ng-model="alumno.documento">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Legajo</span>
+        <input type="number" ng-model="alumno.legajo">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Fecha de Nacimiento</span>
+        <input type="date" ng-model="alumno.nacimiento">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Email</span>
+        <input type="email" ng-model="alumno.email">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Teléfono</span>
+        <input type="tel" ng-model="alumno.telefono">
+      </label>
+      <button class="button button-block button-positive" type="submit">Confirmar Datos</button>
+    </form>
+  </ion-content>
+</ion-view>
