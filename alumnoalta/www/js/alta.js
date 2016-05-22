@@ -1,19 +1,37 @@
 angular.module('starter.controllers')
-	.controller("AltaCtrl", function($scope, $stateParams, $ionicPopup, $cordovaVibration){
+	.controller("AltaCtrl", function($scope, $stateParams, $ionicPopup, $cordovaVibration, $firebaseArray){
 		$scope.titulo = "Ingresar Alumno";
-		$scope.alumno = {};
-		$scope.alumno.nombre = "";
-		$scope.alumno.apellido = "";
-		$scope.alumno.legajo = null;
-		$scope.alumno.nacimiento = null;
-		$scope.alumno.documento = null;
-		$scope.alumno.email = "";
-		$scope.alumno.telefono = "";
+		$scope.alumno = {
+			nombre : "",
+			apellido : "",
+			legajo : null,
+			nacimiento : null,
+			documento : null,
+			email : "",
+			telefono : "",
+		};
+		
+		var myDataRef = new Firebase("https://glowing-inferno-7786.firebaseio.com/alumnos");
 
 
 		$scope.enviarDatos=function(){
 			if (validarDatos()) {
+				var fecha = $scope.alumno.nacimiento;
+				$scope.alumno.nacimiento = {
+					dia:fecha.getDate(),
+					mes:fecha.getMonth() + 1,
+					año:fecha.getFullYear(),
+				}
+				var dataSyncArray = $firebaseArray(myDataRef);
+				dataSyncArray.$add($scope.alumno)
+				.then(function(){
+					$ionicPopup.alert({
+			    	title: 'Información',
+			    	template: 'Envío de datos correctamente'
+			  		});
+				},function(){
 
+				});
 			};
 		};
 
@@ -24,14 +42,10 @@ angular.module('starter.controllers')
 			{
 				$cordovaVibration.vibrate(150);
 				
-				var alertPopup = $ionicPopup.alert({
+				$ionicPopup.alert({
 			    title: 'Atención',
 			    template: 'Verifique los campos'
 			  	});
-
-			   	alertPopup.then(function(res) {
-			    console.log('Error en los campos');
-			   	});
 			}
 			else {return true};
 		};

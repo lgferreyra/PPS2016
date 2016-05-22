@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', ['$scope', 'ionicToast','$ionicModal', '$timeout', '$cordovaFlashlight',function($scope, $firebaseArray, $firebaseObject, ionicToast, $ionicModal, $timeout, $cordovaFlashlight) {
+.controller('AppCtrl', function($scope, $firebaseArray, $firebaseObject, ionicToast, $ionicModal, $timeout, $cordovaFlashlight) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -20,19 +20,16 @@ angular.module('starter.controllers', [])
   });
 
   $scope.linterna = function() {
-    /*var mensaje;
-    if($cordovaFlashlight.isSwitchedOn())
-    {
-      mensaje = "Linterna apagada";
-    }
-    else
-    {
-      mensaje = "Linterna Encendida";
-    }*/
-    //mostrarMensaje('linterna', 'middle', false,2000);
-    $cordovaFlashlight.toggle()/*
-      .then(function (success) { mostrarMensaje(mensaje, 'middle', false,2000);},
-        function (error) { mostrarMensaje("Ha ocurrido un problema", 'middle', false,2000); })*/;
+
+    $cordovaFlashlight.toggle().then(function(){
+
+       mostrarMensaje('Linterna', 'middle', false,2000) 
+
+    },function(){
+
+        mostrarMensaje("Ha ocurrido un problema", 'middle', false,2000)
+    });
+
   };
 
  function mostrarMensaje(mensaje,posicion,cierreAutomatico,duracion){ 
@@ -60,7 +57,7 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
-}] )
+} )
 
 .controller('GestionCtrl', function($scope) {
   $scope.operaciones = [
