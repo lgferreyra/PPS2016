@@ -1,8 +1,22 @@
 <ion-view view-title="Buscar">
-  <ion-content>
-    <label class="item item-input">
-  		<i class="icon ion-search placeholder-icon"></i>
-  		<input type="search" placeholder="Búsqueda">
-	</label>
-  </ion-content>
+	<ion-content>  	
+		<label class="item item-input">
+  			<i class="icon ion-search placeholder-icon"></i>
+  			<input type="search" placeholder="Búsqueda" ng-model="buscar">
+		</label>
+<!--   		<ion-item ng-repeat="alumno in alumnos|filter:buscar as results">
+    		<h3>{{alumno.nombre}} {{alumno.apellido}}</h3>
+    		<p>DNI: {{alumno.documento}}</p>
+  		</ion-item> -->
+
+  		<a class="item item-avatar" ng-repeat="alumno in alumnos|filter:buscar as results" href="#">
+      		<img src="/img/default.jpg">
+      		<h3>{{alumno.nombre}} {{alumno.apellido}}</h3>
+    		<p>DNI: {{alumno.documento}}</p>
+    	</a>
+
+  		<a class="item" ng-if="results.length == 0 && buscar.length>1">
+      		<strong>No se encontraron resultados</strong>
+    	</a>
+	</ion-content>
 </ion-view>
