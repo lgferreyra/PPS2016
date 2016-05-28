@@ -2,10 +2,11 @@
   <ion-content>
   		<div class="list">
   			<div class="item item-avatar item-button-right" ng-repeat="alumno in alumnos|filter:buscar as results">
-          <img src="/img/default.jpg">
+          <img ng-src="data:image/jpeg;base64,{{alumno.imagen}}">
           <h3>{{alumno.nombre}} {{alumno.apellido}}</h3>
           <p>DNI: {{alumno.documento}}</p>
-    			<button class="button {{boton}}" ui-sref="">
+          <p>{{alumno.$id}}</p>
+    			<button class="button {{boton}}" ng-click="accionarAlumno({{alumno}})">
       			<i class="icon {{icono}}"></i>
     			</button>
   			</div>

@@ -1,5 +1,5 @@
 angular.module('starter')
-	.controller("AltaCtrl", function($scope, $stateParams, $ionicPopup, $cordovaVibration, $cordovaGeolocation, $firebaseArray){
+	.controller("AltaCtrl", function($scope, $stateParams, $ionicPopup, $cordovaCamera, $cordovaVibration, $cordovaGeolocation, $firebaseArray){
 		$scope.titulo = "Ingresar Alumno";
 		$scope.alumno = {
 			nombre : "",
@@ -40,6 +40,8 @@ angular.module('starter')
 						documento : null,
 						email : "",
 						telefono : "",
+						geo: {},
+						imagen: null
 					};
 				},function(){
 					$ionicPopup.alert({
@@ -69,9 +71,8 @@ angular.module('starter')
 			var posOptions = {timeout: 10000, enableHighAccuracy: false};
   			$cordovaGeolocation.getCurrentPosition(posOptions)
 		    .then(function (position) {
-		      	/*var lat  = position.coords.latitude
-		      	var long = position.coords.longitude*/
-		      	$scope.alumno.geo =  {lat:position.coords.latitude, lon:position.coords.longitude};
+		    	$scope.alumno.geo = {};
+		      	$scope.alumno.geo = {lat:position.coords.latitude, lon:position.coords.longitude};
 		      	$ionicPopup.alert({
 			    title: 'Atención',
 			    template: 'estoy en lat:' + $scope.alumno.geo.lat + ' y long: ' + $scope.alumno.geo.lon
@@ -83,44 +84,30 @@ angular.module('starter')
 			  	});
 		    });
 		};
+
+		$scope.tomarFoto = function(){
+			document.addEventListener("deviceready", function () {
+
+    		var options = {
+      			quality: 50,
+	      		destinationType: Camera.DestinationType.DATA_URL,
+			    sourceType: Camera.PictureSourceType.CAMERA,
+			    allowEdit: true,
+			    encodingType: Camera.EncodingType.JPEG,
+			    targetWidth: 100,
+			    targetHeight: 100,
+			    popoverOptions: CameraPopoverOptions,
+			    saveToPhotoAlbum: false,
+				correctOrientation:true
+    		};
+
+    		$cordovaCamera.getPicture(options).then(function(imageData) {
+      			var image = document.getElementById('myImage');
+      			image.src = "data:image/jpeg;base64," + imageData;
+      			$scope.alumno.imagen = imageData;
+    			}, function(err) {
+      			// error
+    				});
+  				}, false);
+		};
 });
-
-/*
-angular.module('starter.controllers')
-	.controller("AltaCtrl", function($scope, $stateParams, $ionicPopup, $cordovaVibration){
-		$scope.titulo = "Ingresar Alumno";
-		$scope.alumno = {};
-		$scope.alumno.nombre = "";
-		$scope.alumno.apellido = "";
-		$scope.alumno.legajo = null;
-		$scope.alumno.nacimiento = null;
-		$scope.alumno.documento = null;
-		$scope.alumno.email = "";
-		$scope.alumno.telefono = "";
-
-
-		$scope.enviarDatos=function(){
-			if (validarDatos()) {
-
-			};
-		};
-
-		function validarDatos(){
-			console.log	($scope.alumno);
-			if($scope.alumno.nombre == "" || $scope.alumno.apellido == "" || $scope.alumno.legajo == null ||
-				$scope.alumno.nacimiento == null || $scope.alumno.documento == null) 
-			{
-				$cordovaVibration.vibrate(150);
-				
-				var alertPopup = $ionicPopup.alert({
-			    title: 'Atención',
-			    template: 'Verifique los campos'
-			  	});
-
-			   	alertPopup.then(function(res) {
-			    console.log('Error en los campos');
-			   	});
-			}
-			else {return true};
-		};
-	});*/

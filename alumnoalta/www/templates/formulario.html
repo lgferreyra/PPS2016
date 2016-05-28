@@ -37,7 +37,7 @@
           </button>
         </div>
         <div class="col col-50">
-          <button class="button button-block button-balanced">
+          <button class="button button-block button-balanced" on-release="tomarFoto()">
             Tomar fotografía
           </button>
         </div>
@@ -45,14 +45,14 @@
 
       <div class="row">
         <div class="col col-50" ng-if="alumno.geo != null">
-            <p>hola</p>
+            <p>Posición obtenida</p>
         </div>
         <div class="col col-50" ng-if="alumno.imagen != null">
-            <p>hola</p>
+            <p>Captura obtenida</p>
         </div>
       </div>
 
       <button class="button button-block button-positive" on-release="enviarDatos()">Confirmar Datos</button>
-
+      <img id="myImage" ng-model="alumno.foto" src="">
   </ion-content>
 </ion-view>
