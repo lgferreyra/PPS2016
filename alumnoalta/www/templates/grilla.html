@@ -6,7 +6,7 @@
           <h3>{{alumno.nombre}} {{alumno.apellido}}</h3>
           <p>DNI: {{alumno.documento}}</p>
           <p>{{alumno.$id}}</p>
-    			<button class="button {{boton}}" ng-click="accionarAlumno({{alumno}})">
+    			<button class="button {{boton}}" ng-click="accionarAlumno($index)">
       			<i class="icon {{icono}}"></i>
     			</button>
   			</div>

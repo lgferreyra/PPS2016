@@ -23,10 +23,11 @@ angular.module('starter.controllers')
 			    	title: 'Información',
 			    	template: 'Registro eliminado correctamente'
 			  		});
-				},function(){
+				},function(rta){
+					console.log(rta);
 					$ionicPopup.alert({
 			    	title: 'Información',
-			    	template: 'Ocurrió un error al intentar eliminar'
+			    	template: 'Ocurrió un error al intentar eliminar' + rta
 			  		});
 				});
      		} else {
